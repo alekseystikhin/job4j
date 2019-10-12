@@ -5,8 +5,8 @@ public class Slash {
         CheckPrimeNumber checkPrimeNumber = new CheckPrimeNumber();
         for (int row = 0; row < size; row++) {
             for (int cell = 0; cell < size; cell++) {
-                boolean left = (row == cell) || (((row + cell) % 2 == 0) && (size == 3)); // добавить условие, по которому нужно определить ставить ли символ или нет.
-                boolean right = (row == cell) || (((row + cell) % 4 == 0) && (size == 5)); // добавить условие, что нужно ставить элемент в правый угол.
+                boolean left = row == cell; // добавить условие, по которому нужно определить ставить ли символ или нет.
+                boolean right = size - 1 - row == cell; // добавить условие, что нужно ставить элемент в правый угол.
                 if (left) {
                     System.out.print("0");
                 } else if (right) {
