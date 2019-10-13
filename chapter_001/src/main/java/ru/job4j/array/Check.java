@@ -6,8 +6,8 @@ public class Check {
         for (int i = 1; i < data.length; i++) {
             if (data[i] != data[0]) {
                 result = false;
+                break;
             }
-            break;
         }
         return result;
     }
