@@ -13,11 +13,18 @@ public class MatrixCheck {
                         if (board[row][i] == 'X') {
                             countXInCell++;
                         }
-                        if (board[i][cell] == 'X') {
+                        if ((countXInCell == board.length)) {
+                            result = true;
+                            return result;
+                        }
+                    }
+                    for (int j = 0; j < 5; j++) {
+                        if (board[j][cell] == 'X') {
                             countXInRow++;
                         }
-                        if ((countXInCell == board.length) || (countXInRow == board.length)) {
+                        if ((countXInRow == board.length)) {
                             result = true;
+                            return result;
                         }
                     }
                     return result;
