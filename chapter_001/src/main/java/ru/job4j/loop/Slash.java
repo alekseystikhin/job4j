@@ -1,12 +1,16 @@
 package ru.job4j.loop;
 
 public class Slash {
+    /**
+     * @param size - размер фигуры для отрисовки.
+     *             left - переменная, в которой определяется условия для отрисовки диагонали в нижний правый угол
+     *             right - переменная, в которой определяется условия для отрисовки диагонали в верхний правый угол
+     */
     public static void draw(int size) {
-        CheckPrimeNumber checkPrimeNumber = new CheckPrimeNumber();
         for (int row = 0; row < size; row++) {
             for (int cell = 0; cell < size; cell++) {
-                boolean left = row == cell; // добавить условие, по которому нужно определить ставить ли символ или нет.
-                boolean right = size - 1 - row == cell; // добавить условие, что нужно ставить элемент в правый угол.
+                boolean left = row == cell;
+                boolean right = size - 1 - row == cell;
                 if (left) {
                     System.out.print("0");
                 } else if (right) {
