@@ -3,13 +3,13 @@ package ru.job4j.pojo;
 public class Shop {
     public Product[] delete(Product[] products, int index) {
         products[index] = null;
-        for (int i = 0; i < products.length - 1; i++) {
-            if (products[i] == null) {
-                products[i] = products[i + 1];
-                products[i + 1] = null;
+        Product[] products1 = new Product[products.length];
+        for (int i = 0, j = 0; i < products.length; i++) {
+            if (products[i] != null) {
+                products1[j++] = products[i];
             }
         }
-        return products;
+        return products1;
     }
 
     public static void main(String[] args) {
@@ -18,10 +18,9 @@ public class Shop {
         products[1] = new Product("Bread", 4);
         products[2] = new Product("Egg", 19);
 
-        new Shop().delete(products, 1);
+        products = new Shop().delete(products, 1);
 
-        for (int i = 0; i < products.length; i++) {
-            Product product = products[i];
+        for (Product product : products) {
             //проверяем, что объект не равен null. тк у нас массив не заполнен целиком.
             if (product != null) {
                 System.out.println(product.getName());
