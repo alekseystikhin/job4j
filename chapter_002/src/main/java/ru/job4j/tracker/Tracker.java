@@ -44,6 +44,7 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < this.items.length; i++) {
             if (id.equals(this.items[i].getId())) {
+                item.setId(id);
                 this.items[i] = item;
                 result = true;
                 break;
