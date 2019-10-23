@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Tracker {
@@ -42,7 +43,7 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < this.position; i++) {
             if (id.equals(this.items[i].getId())) {
                 item.setId(id);
                 this.items[i] = item;
@@ -59,11 +60,11 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < this.position; i++) {
             if (this.items[i] != null) {
                 if (id.equals(this.items[i].getId())) {
                     this.items[i] = null;
-                    System.arraycopy(this.items, i + 1, this.items, i, this.items.length - 1 - i);
+                    System.arraycopy(this.items, i + 1, this.items, i, this.position - 1 - i);
                     result = true;
                     break;
                 }
@@ -76,20 +77,7 @@ public class Tracker {
      * @return Копия массива без null-элементов.
      */
     public Item[] findAll() {
-        int count = 0;
-        for (Item i : this.items) {
-            if (i != null) {
-                count++;
-            }
-        }
-        Item[] itemsArrayWithoutNull = new Item[count];
-
-        for (int i = 0, j = 0; i < this.items.length; i++) {
-            if (this.items[i] != null) {
-                itemsArrayWithoutNull[j++] = this.items[i];
-            }
-        }
-        return itemsArrayWithoutNull;
+        return Arrays.copyOf(this.items, this.position);
     }
 
     /**
@@ -97,21 +85,18 @@ public class Tracker {
      * @return Массив элементов, у которых name равно key.
      */
     public Item[] findByName(String key) {
+        Item[] arrayWithoutNulls = Arrays.copyOf(this.items, this.position);
         int count = 0;
-        for (Item item : this.items) {
-            if (item != null) {
-                if (key.equals(item.getName())) {
-                    count++;
-                }
+        for (Item item : arrayWithoutNulls) {
+            if (key.equals(item.getName())) {
+                count++;
             }
         }
         Item[] itemsArray = new Item[count];
 
-        for (int i = 0, j = 0; i < this.items.length; i++) {
-            if (this.items[i] != null) {
-                if (key.equals(this.items[i].getName())) {
-                    itemsArray[j++] = this.items[i];
-                }
+        for (int i = 0, j = 0; i < arrayWithoutNulls.length; i++) {
+            if (key.equals(arrayWithoutNulls[i].getName())) {
+                itemsArray[j++] = arrayWithoutNulls[i];
             }
         }
         return itemsArray;
@@ -123,9 +108,9 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item foundItem = null;
-        for (Item item : this.items) {
-            if (item != null) {
-                if (id.equals(item.getId())) {
+        if (this.position > 0) {
+            for (Item item : this.items) {
+                if ((item != null) && (id.equals(item.getId()))) {
                     foundItem = item;
                     break;
                 }
