@@ -1,70 +1,6 @@
 package ru.job4j.tracker;
 
 public class StartUI {
-    public static void createItem(Input input, Tracker tracker) {
-        System.out.println("=== Add new Item ====");
-        System.out.print("Enter name of new Item: ");
-        String name = input.askStr("");
-        Item item = tracker.add(new Item(name));
-        System.out.println("Id добавленной заявки: " + item.getId() + " Имя добавленной заявки: " + item.getName());
-    }
-
-    public static void showItems(Input input, Tracker tracker) {
-        System.out.println("=== Show all items ====");
-        if (tracker.findAll().length > 0) {
-            for (Item item : tracker.findAll()) {
-                System.out.println("Id заявки: " + item.getId() + " Имя заявки: " + item.getName());
-            }
-        } else {
-            System.out.println("Заявок не найдено");
-        }
-    }
-
-    public static void replaceItem(Input input, Tracker tracker) {
-        System.out.println("=== Edit item ====");
-        System.out.print("Enter Id: ");
-        String id = input.askStr("");
-        System.out.print("Enter name of new Item: ");
-        String name = input.askStr("");
-        Item item = new Item(name);
-        String message = tracker.replace(id, item) ? "Заявка заменена" : "Заявка не заменена";
-        System.out.println(message);
-    }
-
-    public static void deleteItem(Input input, Tracker tracker) {
-        System.out.println("=== Delete item ====");
-        System.out.print("Enter Id: ");
-        String id = input.askStr("");
-        String message = tracker.delete(id) ? "Заявка удалена" : "Заявка не удалена";
-        System.out.println(message);
-    }
-
-    public static void findItemById(Input input, Tracker tracker) {
-        System.out.println("=== Find item by Id ====");
-        System.out.print("Enter Id: ");
-        String id = input.askStr("");
-        Item foundItem = tracker.findById(id);
-        if (foundItem != null) {
-            System.out.println("Id заявки: " + foundItem.getId() + " Имя заявки: " + foundItem.getName());
-        } else {
-            System.out.println("Заявка не найдена");
-        }
-    }
-
-    public static void findItemByName(Input input, Tracker tracker) {
-        System.out.println("=== Find items by name ====");
-        System.out.print("Enter name: ");
-        String name = input.askStr("");
-        Item[] foundItems = tracker.findByName(name);
-        if (foundItems.length > 0) {
-            System.out.println("Найденные заявки: ");
-            for (Item item : foundItems) {
-                System.out.println("Id заявки: " + item.getId() + " Имя заявки: " + item.getName());
-            }
-        } else {
-            System.out.println("Заявок не найдено");
-        }
-    }
 
     public void init(Input input, Tracker tracker) {
         boolean run = true;
@@ -73,17 +9,58 @@ public class StartUI {
             System.out.print("Select: ");
             int select = Integer.valueOf(input.askStr(""));
             if (select == 0) {
-                StartUI.createItem(input, tracker);
+                System.out.println("=== Add new Item ====");
+                System.out.print("Enter name of new Item: ");
+                String name = input.askStr("");
+                Item item = tracker.add(new Item(name));
+                System.out.println("Id добавленной заявки: " + item.getId() + " Имя добавленной заявки: " + item.getName());
             } else if (select == 1) {
-                StartUI.showItems(input, tracker);
+                System.out.println("=== Show all items ====");
+                if (tracker.findAll().length > 0) {
+                    for (Item item : tracker.findAll()) {
+                        System.out.println("Id заявки: " + item.getId() + " Имя заявки: " + item.getName());
+                    }
+                } else {
+                    System.out.println("Заявок не найдено");
+                }
             } else if (select == 2) {
-                StartUI.replaceItem(input, tracker);
+                System.out.println("=== Edit item ====");
+                System.out.print("Enter Id: ");
+                String id = input.askStr("");
+                System.out.print("Enter name of new Item: ");
+                String name = input.askStr("");
+                Item item = new Item(name);
+                String message = tracker.replace(id, item) ? "Заявка заменена" : "Заявка не заменена";
+                System.out.println(message);
             } else if (select == 3) {
-                StartUI.deleteItem(input, tracker);
+                System.out.println("=== Delete item ====");
+                System.out.print("Enter Id: ");
+                String id = input.askStr("");
+                String message = tracker.delete(id) ? "Заявка удалена" : "Заявка не удалена";
+                System.out.println(message);
             } else if (select == 4) {
-                StartUI.findItemById(input, tracker);
+                System.out.println("=== Find item by Id ====");
+                System.out.print("Enter Id: ");
+                String id = input.askStr("");
+                Item foundItem = tracker.findById(id);
+                if (foundItem != null) {
+                    System.out.println("Id заявки: " + foundItem.getId() + " Имя заявки: " + foundItem.getName());
+                } else {
+                    System.out.println("Заявка не найдена");
+                }
             } else if (select == 5) {
-                StartUI.findItemByName(input, tracker);
+                System.out.println("=== Find items by name ====");
+                System.out.print("Enter name: ");
+                String name = input.askStr("");
+                Item[] foundItems = tracker.findByName(name);
+                if (foundItems.length > 0) {
+                    System.out.println("Найденные заявки: ");
+                    for (Item item : foundItems) {
+                        System.out.println("Id заявки: " + item.getId() + " Имя заявки: " + item.getName());
+                    }
+                } else {
+                    System.out.println("Заявок не найдено");
+                }
             } else if (select == 6) {
                 run = false;
             }
