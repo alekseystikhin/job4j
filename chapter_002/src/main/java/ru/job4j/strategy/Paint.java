@@ -8,6 +8,7 @@ public class Paint {
     public static void main(String[] args) {
         Paint p = new Paint();
         p.draw(new Triangle());
+        System.out.println();
         p.draw(new Square());
     }
 }
