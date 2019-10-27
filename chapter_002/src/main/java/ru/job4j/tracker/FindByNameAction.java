@@ -8,13 +8,11 @@ public class FindByNameAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        System.out.print("Enter name: ");
         String name = input.askStr("");
         Item[] foundItems = tracker.findByName(name);
         if (foundItems.length > 0) {
-            System.out.println("Найденные заявки: ");
             for (Item item : foundItems) {
-                System.out.println("Id заявки: " + item.getId() + " Имя заявки: " + item.getName());
+                System.out.println(item.getId() + " " + item.getName());
             }
         } else {
             System.out.println("Заявок не найдено");
