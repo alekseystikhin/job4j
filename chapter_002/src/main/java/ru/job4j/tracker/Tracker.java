@@ -22,7 +22,8 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items.add(this.position++, item);
+        this.items.add(item);
+        position++;
         return item;
     }
 
@@ -63,7 +64,7 @@ public class Tracker {
         boolean result = false;
         for (Item item : this.items) {
             if (item.getId() == id) {
-                this.items.remove(id);
+                this.items.remove(item);
                 result = true;
                 break;
             }
