@@ -1,7 +1,6 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Tracker {
@@ -11,11 +10,6 @@ public class Tracker {
     private final ArrayList<Item> items = new ArrayList<>();
 
     /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
-
-    /**
      * Метод реализаущий добавление заявки в хранилище
      *
      * @param item новая заявка
@@ -23,7 +17,6 @@ public class Tracker {
     public Item add(Item item) {
         item.setId(this.generateId());
         this.items.add(item);
-        position++;
         return item;
     }
 
@@ -45,7 +38,7 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for (int i = 0; i < this.position; i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (id.equals(this.items.get(i).getId())) {
                 item.setId(id);
                 items.add(i, item);
@@ -76,7 +69,7 @@ public class Tracker {
      * @return Копия списка без null-элементов.
      */
     public ArrayList<Item> findAll() {
-        ArrayList<Item> result = new ArrayList<>(this.position);
+        ArrayList<Item> result = new ArrayList<>();
         for (Item item : this.items) {
             if (item != null) {
                 result.add(item);
@@ -90,7 +83,7 @@ public class Tracker {
      * @return Список элементов, у которых name равно key.
      */
     public ArrayList<Item> findByName(String key) {
-        ArrayList<Item> newArray = new ArrayList<>();
+        ArrayList<Item> newArray = new ArrayList<>(items.size());
         for (Item item : this.items) {
             if (key.equals(item.getName())) {
                 newArray.add(item);
@@ -105,7 +98,7 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item foundItem = null;
-        if (this.position > 0) {
+        if (items.size() > 0) {
             for (Item item : this.items) {
                 if ((item != null) && (id.equals(item.getId()))) {
                     foundItem = item;
