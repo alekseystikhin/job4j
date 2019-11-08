@@ -22,7 +22,7 @@ public class SortUser {
             @Override
             public int compare(User o1, User o2) {
                 int result = o1.getName().compareTo(o2.getName());
-                if (o1.getName() == o2.getName()) {
+                if (result == 0) {
                     result = Integer.compare(o1.getAge(), o2.getAge());
                 }
                 return result;
