@@ -41,7 +41,7 @@ public class Tracker {
         for (int i = 0; i < items.size(); i++) {
             if (id.equals(this.items.get(i).getId())) {
                 item.setId(id);
-                items.add(i, item);
+                items.set(i, item);
                 result = true;
                 break;
             }
@@ -55,9 +55,9 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (Item item : this.items) {
-            if (item.getId() == id) {
-                this.items.remove(item);
+        for (int i = 0; i < this.items.size(); i++) {
+            if (this.items.get(i).getId().equals(id)) {
+                this.items.remove(i);
                 result = true;
                 break;
             }
