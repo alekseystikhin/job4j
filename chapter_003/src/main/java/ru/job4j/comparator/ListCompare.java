@@ -8,7 +8,6 @@ public class ListCompare implements Comparator<String> {
     public int compare(String left, String right) {
         int l1 = left.length();
         int l2 = right.length();
-
         int lim = Math.min(l1, l2);
         for (int i = 0; i < lim; i++) {
             int leftChar = left.charAt(i);
