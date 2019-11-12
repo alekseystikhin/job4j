@@ -4,31 +4,22 @@ import java.util.*;
 
 public class Bank {
 
-    Map<com.User, List<Account>> users = new HashMap<>();
+    Map<User, List<Account>> users = new HashMap<>();
 
-    public void addUser(com.User user) {
+    public void addUser(User user) {
         this.users.putIfAbsent(user, new ArrayList<>());
     }
 
-    public void deleteUser(com.User user) {
+    public void deleteUser(User user) {
         this.users.remove(user);
     }
 
     public void addAccountToUser(String passport, Account account) {
-
-        for (User key : users.keySet()) {
-            if (key.getPassport().equals(passport)) {
-                this.users.get(key).add(account);
-            }
-        }
+        getUserAccounts(passport).add(account);
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
-        for (User key : users.keySet()) {
-            if (key.getPassport().equals(passport)) {
-                this.users.get(key).remove(account);
-            }
-        }
+        getUserAccounts(passport).remove(account);
     }
 
     public List<Account> getUserAccounts(String passport) {
