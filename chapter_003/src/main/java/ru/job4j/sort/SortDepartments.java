@@ -7,18 +7,17 @@ import java.util.List;
 
 public class SortDepartments {
 
-    public List<String> ascSort(List<String> list) {
-        Collections.sort(list, new Comparator<String>() {
+    public void ascSort(List<String> orgs) {
+        Collections.sort(orgs, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
                 return o1.compareTo(o2);
             }
         });
-        return list;
     }
 
-    public List<String> descSort(List<String> list) {
-        Collections.sort(list, new Comparator<String>() {
+    public void descSort(List<String> orgs) {
+        Collections.sort(orgs, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
                 if (o1.startsWith(o2)) {
@@ -30,27 +29,44 @@ public class SortDepartments {
                 }
             }
         });
-        return list;
+    }
+
+    public void fillGaps(List<String> orgs) {
+        List<String> tempList = new ArrayList<>();
+        tempList.addAll(orgs);
+        for (String dept : tempList) {
+            while (dept.contains("\\")) {
+                dept = dept.substring(0, dept.lastIndexOf("\\"));
+                if (!orgs.contains(dept)) {
+                    orgs.add(dept);
+                }
+            }
+
+        }
     }
 
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        list.add("K1\\SK1");
-        list.add("K1\\SK2");
-        list.add("K2\\SK1");
-        list.add("K1\\SK1\\SSK1");
-        list.add("K1\\SK1\\SSK2");
-        list.add("K1");
-        list.add("K2");
-        list.add("K2\\SK1\\SSK1");
-        list.add("K2\\SK1\\SSK2");
-        new SortDepartments().ascSort(list);
-        for (String s : list) {
+        SortDepartments sortDepartments = new SortDepartments();
+        List<String> orgs = new ArrayList<>();
+        orgs.add("K1\\SK1");
+        orgs.add("K1\\SK2");
+        orgs.add("K1\\SK1\\SSK1");
+        orgs.add("K1\\SK1\\SSK2");
+        orgs.add("K2");
+        orgs.add("K2\\SK1\\SSK1");
+        orgs.add("K2\\SK1\\SSK2");
+        sortDepartments.fillGaps(orgs);
+        for (String s : orgs) {
             System.out.println(s);
         }
         System.out.println("-----------------------");
-        new SortDepartments().descSort(list);
-        for (String s : list) {
+        sortDepartments.ascSort(orgs);
+        for (String s : orgs) {
+            System.out.println(s);
+        }
+        System.out.println("-----------------------");
+        sortDepartments.descSort(orgs);
+        for (String s : orgs) {
             System.out.println(s);
         }
     }
