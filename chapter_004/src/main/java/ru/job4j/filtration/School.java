@@ -1,4 +1,4 @@
-package ru.job4j.diapason.ru.job4j.filtration;
+package ru.job4j.filtration;
 
 import java.util.List;
 import java.util.function.Predicate;

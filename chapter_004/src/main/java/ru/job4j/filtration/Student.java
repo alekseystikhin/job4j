@@ -1,4 +1,4 @@
-package ru.job4j.diapason.ru.job4j.filtration;
+package ru.job4j.filtration;
 
 public class Student {
     int score;
