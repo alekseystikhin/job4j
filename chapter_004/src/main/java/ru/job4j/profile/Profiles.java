@@ -10,6 +10,6 @@ public class Profiles {
     }
 
     List<Address> collectUnique(List<Profile> profiles) {
-        return profiles.stream().map(profile -> profile.getAddress()).distinct().sorted(new AddressComparator()).collect(Collectors.toList());
+        return profiles.stream().map(profile -> profile.getAddress()).sorted(new AddressComparator()).distinct().collect(Collectors.toList());
     }
 }
