@@ -1,7 +1,6 @@
 package com;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Bank {
 
@@ -43,14 +42,6 @@ public class Bank {
         boolean transfer = false;
         List<Account> srcList = getAccountsByPassportAndRequisites(srcPassport, srcRequisite);
         List<Account> dstList = getAccountsByPassportAndRequisites(destPassport, dstRequisite);
-
-        srcList = srcList.stream()
-                .filter(account -> account.getRequisites().equals(srcRequisite))
-                .collect(Collectors.toList());
-
-        dstList = dstList.stream()
-                .filter(account -> account.getRequisites().equals(dstRequisite))
-                .collect(Collectors.toList());
 
         if (!srcList.isEmpty() && !dstList.isEmpty()) {
             if (srcList.get(0).transfer(dstList.get(0), amount)) {
