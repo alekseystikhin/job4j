@@ -44,9 +44,7 @@ public class Bank {
         List<Account> dstList = getAccountsByPassportAndRequisites(destPassport, dstRequisite);
 
         if (!srcList.isEmpty() && !dstList.isEmpty()) {
-            if (srcList.get(0).transfer(dstList.get(0), amount)) {
-                transfer = true;
-            }
+            transfer = srcList.get(0).transfer(dstList.get(0), amount);
         }
 
         return transfer;

@@ -19,12 +19,16 @@ public class Account {
     }
 
     public boolean transfer(Account destination, double amount) {
-        boolean success = false;
-        if (amount > 0 && amount < this.value && destination != null) {
-            success = true;
+        boolean result = false;
+        if (canTransfer(amount)) {
             this.value -= amount;
             destination.value += amount;
+            result = true;
         }
-        return success;
+        return result;
+    }
+
+    public boolean canTransfer(double amount) {
+        return this.getValue() >= amount;
     }
 }
