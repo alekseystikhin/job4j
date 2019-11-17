@@ -31,10 +31,18 @@ public class Bank {
         return list;
     }
 
+    public List<Account> getAccountsByPassportAndRequisites(String passport, String requisites) {
+        List<Account> accounts = new ArrayList<>();
+        getUserAccounts(passport).stream()
+                .filter(account -> account.getRequisites().equals(requisites))
+                .forEach(account -> accounts.add(account));
+        return accounts;
+    }
+
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean transfer = false;
-        List<Account> srcList = getUserAccounts(srcPassport);
-        List<Account> dstList = getUserAccounts(destPassport);
+        List<Account> srcList = getAccountsByPassportAndRequisites(srcPassport, srcRequisite);
+        List<Account> dstList = getAccountsByPassportAndRequisites(destPassport, dstRequisite);
 
         srcList = srcList.stream()
                 .filter(account -> account.getRequisites().equals(srcRequisite))
