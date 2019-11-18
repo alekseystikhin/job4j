@@ -1,10 +1,7 @@
 package ru.job4j.list;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,19 +9,11 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class UserConvertTest {
-    private final List<User> listOfUsers = new ArrayList<>();
-
-    @Before
-    public void setUp() throws Exception {
-        listOfUsers.add(new User(1, "Alex", "Moscow"));
-        listOfUsers.add(new User(2, "Jane", "Samara"));
-        listOfUsers.add(new User(3, "John", "Rostov"));
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        listOfUsers.clear();
-    }
+    private List<User> listOfUsers = List.of(
+            new User(1, "Alex", "Moscow"),
+            new User(2, "Jane", "Samara"),
+            new User(3, "John", "Rostov")
+    );
 
     @Test
     public void testProcess() throws Exception {

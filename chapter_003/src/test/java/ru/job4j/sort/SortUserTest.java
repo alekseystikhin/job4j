@@ -28,10 +28,10 @@ public class SortUserTest {
 
     @Test
     public void testSort() {
-        Set<User> expected = new TreeSet<>();
-        expected.add(new User("Lena", 12));
-        expected.add(new User("Alex", 14));
-        expected.add(new User("Lisa", 17));
+        Set<User> expected = Set.of(
+                new User("Lena", 12),
+                new User("Alex", 14),
+                new User("Lisa", 17));
         Set<User> actual = sortUser.sort(users);
         Assert.assertThat(actual, is(expected));
     }
@@ -44,11 +44,11 @@ public class SortUserTest {
         actual.add(new User("Семен", 20));
         actual.add(new User("Иван", 25));
 
-        List<User> expected = new ArrayList<>();
-        expected.add(new User("Иван", 25));
-        expected.add(new User("Игорь", 30));
-        expected.add(new User("Семен", 20));
-        expected.add(new User("Сергей", 25));
+        List<User> expected = List.of(
+                new User("Иван", 25),
+                new User("Игорь", 30),
+                new User("Семен", 20),
+                new User("Сергей", 25));
 
         actual = sortUser.sortNameLength(actual);
         Assert.assertThat(actual, is(expected));
@@ -62,11 +62,11 @@ public class SortUserTest {
         actual.add(new User("Сергей", 20));
         actual.add(new User("Иван", 25));
 
-        List<User> expected = new ArrayList<>();
-        expected.add(new User("Иван", 25));
-        expected.add(new User("Иван", 30));
-        expected.add(new User("Сергей", 20));
-        expected.add(new User("Сергей", 25));
+        List<User> expected = List.of(
+                new User("Иван", 25),
+                new User("Иван", 30),
+                new User("Сергей", 20),
+                new User("Сергей", 25));
 
         actual = sortUser.sortByAllFields(actual);
         Assert.assertThat(actual, is(expected));
