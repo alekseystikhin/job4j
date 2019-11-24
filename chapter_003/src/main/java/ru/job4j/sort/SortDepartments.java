@@ -44,30 +44,4 @@ public class SortDepartments {
 
         }
     }
-
-    public static void main(String[] args) {
-        SortDepartments sortDepartments = new SortDepartments();
-        List<String> orgs = new ArrayList<>();
-        orgs.add("K1\\SK1");
-        orgs.add("K1\\SK2");
-        orgs.add("K1\\SK1\\SSK1");
-        orgs.add("K1\\SK1\\SSK2");
-        orgs.add("K2");
-        orgs.add("K2\\SK1\\SSK1");
-        orgs.add("K2\\SK1\\SSK2");
-        sortDepartments.fillGaps(orgs);
-        for (String s : orgs) {
-            System.out.println(s);
-        }
-        System.out.println("-----------------------");
-        sortDepartments.ascSort(orgs);
-        for (String s : orgs) {
-            System.out.println(s);
-        }
-        System.out.println("-----------------------");
-        sortDepartments.descSort(orgs);
-        for (String s : orgs) {
-            System.out.println(s);
-        }
-    }
 }
