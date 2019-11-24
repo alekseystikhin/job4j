@@ -3,9 +3,9 @@ package ru.job4j.group;
 import java.util.*;
 
 public class UsersGroupingByEmail {
-    public Map<String, List<String>> groupingUsersByEmail(List<User> students) {
+    public Map<String, List<String>> groupingUsersByEmail(List<User> users) {
         Map<String, List<String>> mapOfEmails = new TreeMap<>();
-        students.stream().forEach(user ->
+        users.stream().forEach(user ->
                 user.getEmails()
                         .forEach(email -> {
                             if (mapOfEmails.containsKey(email)) {
