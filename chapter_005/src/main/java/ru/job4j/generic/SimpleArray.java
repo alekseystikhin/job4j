@@ -3,6 +3,7 @@ package ru.job4j.generic;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+@SuppressWarnings("unchecked")
 public class SimpleArray<T> implements Iterable<T> {
     private final Object[] array;
     private int size = 0;
