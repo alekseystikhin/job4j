@@ -30,11 +30,10 @@ public class SimpleArrayListTest {
         assertThat(list.getSize(), is(3));
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void whenAddThreeElementsThenUseDelete() {
         assertThat(list.delete(), is(3));
         assertThat(list.delete(), is(2));
         assertThat(list.delete(), is(1));
-        list.delete();
     }
 }

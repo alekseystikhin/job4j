@@ -3,7 +3,6 @@ package ru.job4j.list;
 import java.util.NoSuchElementException;
 
 public class SimpleArrayList<E> {
-
     private int size;
     private Node<E> first;
 
@@ -21,20 +20,12 @@ public class SimpleArrayList<E> {
      * Метод удаления первого элемента в списке.
      */
     public E delete() throws NoSuchElementException {
-        Node<E> f = this.first;
-        E result;
-        if (f == null) {
-            throw new NoSuchElementException();
-        } else if (f.next == null) {
+        E result = null;
+        if (this.first != null) {
             result = this.first.data;
+            this.first = this.first.next;
             this.size--;
-            this.first = null;
-        } else {
-            result = this.first.data;
-            this.size--;
-            this.first = f.next;
         }
-
         return result;
     }
 
@@ -60,7 +51,6 @@ public class SimpleArrayList<E> {
      * Класс предназначен для хранения данных.
      */
     private static class Node<E> {
-
         E data;
         Node<E> next;
 
