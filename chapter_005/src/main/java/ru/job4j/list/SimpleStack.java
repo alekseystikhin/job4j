@@ -1,7 +1,7 @@
 package ru.job4j.list;
 
 public class SimpleStack<T> {
-    DynamicArrayList<T> list = new DynamicArrayList<>();
+    DynamicLinkedList<T> list = new DynamicLinkedList<>();
     public T poll() {
         return list.delete(list.size() - 1);
     }
