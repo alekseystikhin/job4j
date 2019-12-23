@@ -33,6 +33,13 @@ public class DynamicArrayListTest {
         assertThat(list.get(3), is(4));
     }
 
+    @Test
+    public void deleteTest() {
+        list.delete(0);
+        assertThat(list.get(0),  is(2));
+        assertThat(list.get(1),  is(3));
+    }
+
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void getTest() {
         assertThat(list.get(0), is(1));

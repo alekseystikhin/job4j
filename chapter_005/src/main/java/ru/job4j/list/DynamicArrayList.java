@@ -23,11 +23,25 @@ public class DynamicArrayList<E> implements Iterable<E> {
         this.array[this.size++] = model;
     }
 
+    public E delete(int index) {
+        checkBounds(index);
+        modCount++;
+        --size;
+        System.arraycopy(array, index + 1, array, index, size - index);
+        E result = (E) array[size];
+        array[size] = null;
+        return result;
+    }
+
     public E get(int index) throws ArrayIndexOutOfBoundsException {
+        checkBounds(index);
+        return (E) this.array[index];
+    }
+
+    private void checkBounds(int index) {
         if ((index < 0) && (index >= this.size)) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        return (E) this.array[index];
     }
 
     public int size() {
