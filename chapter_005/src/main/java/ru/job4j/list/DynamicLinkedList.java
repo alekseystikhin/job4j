@@ -23,16 +23,32 @@ public class DynamicLinkedList<E> implements Iterable<E> {
         this.size++;
     }
 
-    E get(int index) {
+    public E delete(int index) {
+        Node<E> prev = index == 0 ? this.last : findByIndex(index - 1);
+        Node<E> temp = prev.next;
+        prev.next = temp.next;
+        modCount++;
+        this.size--;
+        return temp.data;
+    }
+
+    public E get(int index) {
+        return findByIndex(index).data;
+    }
+
+    private Node<E> findByIndex(int index) {
+        checkBounds(index);
         Node<E> result = this.last.next;
-        if (index >= this.size) {
-            throw new IndexOutOfBoundsException();
-        } else {
-            for (int i = 0; i < index; i++) {
-                result = result.next;
-            }
+        for (int i = 0; i < index; i++) {
+            result = result.next;
         }
-        return result.data;
+        return result;
+    }
+
+    private void checkBounds(int index) {
+        if ((index < 0) && (index >= this.size)) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     public int size() {

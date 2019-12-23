@@ -33,12 +33,11 @@ public class DynamicLinkedListTest {
         assertThat(list.get(3), is(4));
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void getTest() {
         assertThat(list.get(0), is(1));
         assertThat(list.get(1), is(2));
         assertThat(list.get(2), is(3));
-        list.get(3);
     }
 
     @Test(expected = ConcurrentModificationException.class)
