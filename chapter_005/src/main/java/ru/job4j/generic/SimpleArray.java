@@ -41,6 +41,23 @@ public class SimpleArray<T> implements Iterable<T> {
         return (T) this.array[index];
     }
 
+    public int indexOf(T element) {
+        if (element == null) {
+            for (int i = 0; i < size; i++) {
+                if (array[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (element.equals(array[i])) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
