@@ -30,9 +30,11 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void remove(int index) {
-        --size;
-        System.arraycopy(this.array, index + 1, this.array, index, this.size - index);
-        this.array[this.size] = null;
+        if (index <= this.size) {
+            --size;
+            System.arraycopy(this.array, index + 1, this.array, index, this.size - index);
+            this.array[this.size] = null;
+        }
     }
 
     public T get(int index) throws ArrayIndexOutOfBoundsException {
@@ -43,11 +45,11 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public int indexOf(T element) {
-            for (int i = 0; i < size; i++) {
-                if (Objects.equals(element, array[i])) {
-                    return i;
-                }
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(element, array[i])) {
+                return i;
             }
+        }
         return -1;
     }
 
