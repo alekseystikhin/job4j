@@ -2,6 +2,7 @@ package ru.job4j.generic;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 @SuppressWarnings("unchecked")
 public class SimpleArray<T> implements Iterable<T> {
@@ -42,19 +43,11 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public int indexOf(T element) {
-        if (element == null) {
             for (int i = 0; i < size; i++) {
-                if (array[i] == null) {
+                if (Objects.equals(element, array[i])) {
                     return i;
                 }
             }
-        } else {
-            for (int i = 0; i < size; i++) {
-                if (element.equals(array[i])) {
-                    return i;
-                }
-            }
-        }
         return -1;
     }
 
